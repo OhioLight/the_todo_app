@@ -3,12 +3,17 @@ import 'package:the_todo_app/todo.dart';
 import 'package:the_todo_app/todo_main_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   /// Das hier ist der State, der in allen Widgets verwendet werden soll.
   /// Dafür muss er natürlich auch von den Widgets angepasst werden.
   final List<Todo> todos = [
@@ -48,6 +53,18 @@ class MyApp extends StatelessWidget {
         openTodos: openTodos,
         doneTodos: doneTodos,
         todos: todos,
+        onChangeCallback: (todoId, newState) {
+          Todo? todoToChange;
+          // Todo finden, das angepasst werden muss.
+          for (final currentTodo in todos) {
+            if (currentTodo.id == todoId) {
+              todoToChange = currentTodo;
+            }
+          }
+          // Todo anpassen :)
+          todoToChange?.isDone = newState;
+          setState(() {});
+        },
       ), // Scaffold
     ); // MaterialApp
   }

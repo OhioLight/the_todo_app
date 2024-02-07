@@ -8,11 +8,13 @@ class TodoMainScreen extends StatelessWidget {
     required this.openTodos,
     required this.doneTodos,
     required this.todos,
+    required this.onChangeCallback,
   });
 
   final List<Todo> openTodos;
   final List<Todo> doneTodos;
   final List<Todo> todos;
+  final Function(int, bool) onChangeCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,10 @@ class TodoMainScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: todos.length,
         itemBuilder: (context, index) {
-          return TodoItem(todo: todos[index]);
+          return TodoItem(
+              todo: todos[index],
+              onItemStateChanged: (id, newState) =>
+                  onChangeCallback(id, newState));
         },
       ), // Container
     );
