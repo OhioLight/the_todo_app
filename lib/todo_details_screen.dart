@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_todo_app/todo.dart';
 
+// Speichert seinen eigenen State, dh. kommuniziert nicht nach "außen".
 class TodoDetailsScreen extends StatefulWidget {
   const TodoDetailsScreen({super.key, required this.todo});
 

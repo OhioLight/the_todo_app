@@ -9,6 +9,8 @@ void main() {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
+  /// Das hier ist der State, der in allen Widgets verwendet werden soll.
+  /// Dafür muss er natürlich auch von den Widgets angepasst werden.
   final List<Todo> todos = [
     Todo(id: 0, topic: "Frühstücken", isDone: true),
     Todo(id: 1, topic: "Clojure lernen"),
@@ -17,6 +19,7 @@ class MyApp extends StatelessWidget {
     Todo(id: 4, topic: "Lego bauen"),
   ];
 
+  /// Gibt eine Liste von Todos zurück, die offen sind.
   List<Todo> get openTodos {
     final openTodos = <Todo>[];
     for (final todo in todos) {
@@ -27,6 +30,7 @@ class MyApp extends StatelessWidget {
     return openTodos;
   }
 
+  /// Gibt eine Liste von Todos zurück, die erledigt wurden.
   List<Todo> get doneTodos {
     final doneTodos = <Todo>[];
     for (final todo in todos) {
