@@ -56,9 +56,10 @@ class TodoMainScreen extends StatelessWidget {
         itemCount: todos.length,
         itemBuilder: (context, index) {
           return TodoItem(
-              todo: todos[index],
-              onItemStateChanged: (id, newState) =>
-                  onChangeCallback(id, newState));
+            todo: todos[index],
+            onItemStateChanged: (id, newState) =>
+                onChangeCallback(id, newState),
+          );
         },
       ), // Container
     );
