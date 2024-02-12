@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_todo_app/todo.dart';
 
-// // Speichert seinen eigenen State, dh. kommuniziert nicht nach "außen".
+//
 // class TodoDetailsScreen extends StatefulWidget {
 //   const TodoDetailsScreen({super.key, required this.todo});
 
@@ -24,16 +24,16 @@ class TodoDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(todo.topic),
-      ), // AppBar
+      ),
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 48), // SizedBox
+            const SizedBox(height: 48),
             Text(
               "ID: ${todo.id}",
               style: const TextStyle(fontSize: 32),
-            ), // Text
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -48,9 +48,9 @@ class TodoDetailsScreen extends StatelessWidget {
                     }),
               ],
             ),
-          ], // <Widget>[]
+          ],
         ),
-      ), // Padding
-    ); // Scaffold
+      ),
+    );
   }
 }

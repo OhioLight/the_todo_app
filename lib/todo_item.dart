@@ -32,9 +32,9 @@ class TodoItem extends StatelessWidget {
           onChanged: (bool? value) {
             onItemStateChanged(todo.id, value ?? false);
           },
-        ), // Checkbox
+        ),
         title: Text(todo.topic),
       ),
-    ); // ListTile
+    );
   }
 }
