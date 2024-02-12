@@ -9,7 +9,7 @@ class DoneTodosScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final provider = context.watch<TodoProvider>();
-    final provider = Provider.of<TodoProvider>(context, listen: true);
+    final provider = Provider.of<TodoProvider>(context);
 
     return Scaffold(
       appBar: AppBar(

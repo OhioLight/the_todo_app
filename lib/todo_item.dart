@@ -32,10 +32,10 @@ class TodoItem extends StatelessWidget {
             onChanged: (bool? value) {
               provider.toggleTodo(todo);
             },
-          ), // Checkbox
+          ),
           title: Text(todo.topic),
         ),
       ),
-    ); // ListTile
+    );
   }
 }
