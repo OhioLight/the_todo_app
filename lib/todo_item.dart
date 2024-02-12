@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:the_todo_app/todo.dart';
 import 'package:the_todo_app/todo_details_screen.dart';
+import 'package:the_todo_app/todo_provider.dart';
 
 class TodoItem extends StatelessWidget {
   const TodoItem({
     super.key,
     required this.todo,
-    required this.onItemStateChanged,
   });
 
   final Todo todo;
-  final void Function(int, bool) onItemStateChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +21,20 @@ class TodoItem extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => TodoDetailsScreen(
               todo: todo,
-              onDetailStateChanged: onItemStateChanged,
             ),
           ),
         );
       },
-      child: ListTile(
-        leading: Checkbox(
-          value: todo.isDone,
-          onChanged: (bool? value) {
-            onItemStateChanged(todo.id, value ?? false);
-          },
-        ), // Checkbox
-        title: Text(todo.topic),
+      child: Consumer<TodoProvider>(
+        builder: (context, provider, child) => ListTile(
+          leading: Checkbox(
+            value: todo.isDone,
+            onChanged: (bool? value) {
+              provider.toggleTodo(todo);
+            },
+          ), // Checkbox
+          title: Text(todo.topic),
+        ),
       ),
     ); // ListTile
   }

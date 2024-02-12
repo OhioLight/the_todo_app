@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:the_todo_app/todo.dart';
+import 'package:provider/provider.dart';
+import 'package:the_todo_app/done_todos_screen.dart';
+import 'package:the_todo_app/open_todos_screen.dart';
 import 'package:the_todo_app/todo_item.dart';
+import 'package:the_todo_app/todo_provider.dart';
 
 class TodoMainScreen extends StatelessWidget {
-  const TodoMainScreen({
-    super.key,
-    required this.openTodos,
-    required this.doneTodos,
-    required this.todos,
-    required this.onChangeCallback,
-  });
-
-  final List<Todo> openTodos;
-  final List<Todo> doneTodos;
-  final List<Todo> todos;
-  final Function(int, bool) onChangeCallback;
+  const TodoMainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Schritt 3: Den Provider verwenden.
+    //final provider = context.watch<TodoProvider>();
+    final provider = Provider.of<TodoProvider>(context, listen: true);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -27,24 +23,32 @@ class TodoMainScreen extends StatelessWidget {
         backgroundColor: Colors.lightBlue[500],
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const OpenTodosScreen(),
+              ));
+            },
             child: Row(
               children: [
                 const Icon(Icons.pending_actions),
                 Text(
-                  openTodos.length.toString(),
+                  provider.openTodos.length.toString(),
                   style: const TextStyle(fontSize: 24),
                 ),
               ],
             ),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const DoneTodosScreen(),
+              ));
+            },
             child: Row(
               children: [
                 const Icon(Icons.done),
                 Text(
-                  doneTodos.length.toString(),
+                  provider.doneTodos.length.toString(),
                   style: const TextStyle(fontSize: 24),
                 ),
               ],
@@ -53,13 +57,9 @@ class TodoMainScreen extends StatelessWidget {
         ],
       ), // AppBar
       body: ListView.builder(
-        itemCount: todos.length,
+        itemCount: provider.todos.length,
         itemBuilder: (context, index) {
-          return TodoItem(
-            todo: todos[index],
-            onItemStateChanged: (id, newState) =>
-                onChangeCallback(id, newState),
-          );
+          return TodoItem(todo: provider.todos[index]);
         },
       ), // Container
     );
