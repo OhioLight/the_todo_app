@@ -21,7 +21,7 @@ class TodoMainScreen extends StatelessWidget {
         title: const Text(
           "ToDo App",
           style: TextStyle(fontSize: 32),
-        ), // Text
+        ),
         backgroundColor: Colors.lightBlue[500],
         actions: [
           TextButton(
@@ -49,13 +49,13 @@ class TodoMainScreen extends StatelessWidget {
             ),
           ),
         ],
-      ), // AppBar
+      ),
       body: ListView.builder(
         itemCount: todos.length,
         itemBuilder: (context, index) {
           return TodoItem(todo: todos[index]);
         },
-      ), // Container
+      ),
     );
   }
 }

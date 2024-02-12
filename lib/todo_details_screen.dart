@@ -17,16 +17,16 @@ class _TodoDetailsScreenState extends State<TodoDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.todo.topic),
-      ), // AppBar
+      ),
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 48), // SizedBox
+            const SizedBox(height: 48),
             Text(
               "ID: ${widget.todo.id}",
               style: const TextStyle(fontSize: 32),
-            ), // Text
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -43,9 +43,9 @@ class _TodoDetailsScreenState extends State<TodoDetailsScreen> {
                     }),
               ],
             ),
-          ], // <Widget>[]
+          ],
         ),
-      ), // Padding
-    ); // Scaffold
+      ),
+    );
   }
 }

@@ -32,9 +32,9 @@ class _TodoItemState extends State<TodoItem> {
               widget.todo.isDone = value ?? false;
             });
           },
-        ), // Checkbox
+        ),
         title: Text(widget.todo.topic),
       ),
-    ); // ListTile
+    );
   }
 }

@@ -44,7 +44,7 @@ class TodoApp extends StatelessWidget {
         openTodos: openTodos,
         doneTodos: doneTodos,
         todos: todos,
-      ), // Scaffold
-    ); // MaterialApp
+      ),
+    );
   }
 }
