@@ -56,12 +56,18 @@ class TodoMainScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: provider.todos.length,
-        itemBuilder: (context, index) {
-          return TodoItem(todo: provider.todos[index]);
-        },
-      ),
+      body: switch (provider.todoProviderStatus) {
+        TodoProviderStatus.error =>
+          const Center(child: Text("Fehler beim Laden der Todos")),
+        TodoProviderStatus.loaded => ListView.builder(
+            itemCount: provider.todos.length,
+            itemBuilder: (context, index) {
+              return TodoItem(todo: provider.todos[index]);
+            },
+          ),
+        TodoProviderStatus.loading =>
+          const Center(child: CircularProgressIndicator()),
+      },
     );
   }
 }
