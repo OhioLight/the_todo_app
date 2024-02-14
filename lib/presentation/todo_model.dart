@@ -28,18 +28,21 @@ class TodoModel extends ChangeNotifier {
   // ];
 
   TodoModel() {
-    _loadTodos();
+    //_loadTodos();
+    _loadTodosStream();
   }
 
   TodoModelStatus get todoProviderStatus => _todoModelStatus;
   List<Todo> get todos => _todos;
 
-  Future<void> _loadTodos() async {
+  Future<void> _loadTodosStream() async {
     try {
-      final todos = await _todoRepository.todos;
-      _todos.addAll(todos);
-      _todoModelStatus = TodoModelStatus.loaded;
-      notifyListeners();
+      _todoRepository.todos.listen((todos) {
+        _todos.clear();
+        _todos.addAll(todos);
+        _todoModelStatus = TodoModelStatus.loaded;
+        notifyListeners();
+      });
     } catch (e) {
       _todoModelStatus = TodoModelStatus.error;
       notifyListeners();
@@ -48,6 +51,7 @@ class TodoModel extends ChangeNotifier {
 
   /// Gibt eine Liste von Todos zurück, die offen sind.
   List<Todo> get openTodos => _todos.where((todo) => !todo.isDone).toList();
+
   // List<Todo> get openTodos {
   //   final openTodos = <Todo>[];
   //   for (final todo in todos) {
@@ -60,6 +64,7 @@ class TodoModel extends ChangeNotifier {
 
   /// Gibt eine Liste von Todos zurück, die erledigt wurden.
   List<Todo> get doneTodos => _todos.where((todo) => todo.isDone).toList();
+
   // List<Todo> get doneTodos {
   //   final doneTodos = <Todo>[];
   //   for (final todo in todos) {

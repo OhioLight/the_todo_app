@@ -6,20 +6,23 @@ class FirebaseTodoRepository implements TodoRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
-  Future<List<Todo>> get todos async {
+  Stream<List<Todo>> get todos {
     final CollectionReference<Map<String, dynamic>> todoCollectionRef =
         _firestore.collection('todos');
-    final QuerySnapshot<Map<String, dynamic>> todosSnapshot =
-        await todoCollectionRef.get();
-    final List<QueryDocumentSnapshot<Map<String, dynamic>>> todoDocuments =
-        todosSnapshot.docs;
+    final Stream<QuerySnapshot<Map<String, dynamic>>> todosSnapshotStream =
+        todoCollectionRef.snapshots();
 
-    final List<Todo> retrievedTodos = [];
-    for (final todoDocument in todoDocuments) {
-      retrievedTodos.add(Todo.fromFirestore(todoDocument));
-    }
+    return todosSnapshotStream.map((snapshot) {
+      final List<QueryDocumentSnapshot<Map<String, dynamic>>> todoDocuments =
+          snapshot.docs;
 
-    return retrievedTodos;
+      final List<Todo> retrievedTodos = [];
+      for (final todoDocument in todoDocuments) {
+        retrievedTodos.add(Todo.fromFirestore(todoDocument));
+      }
+
+      return retrievedTodos;
+    });
   }
 
   @override
