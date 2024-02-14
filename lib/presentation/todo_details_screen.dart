@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:the_todo_app/todo.dart';
-import 'package:the_todo_app/todo_provider.dart';
+import 'package:the_todo_app/domain/todo.dart';
+import 'package:the_todo_app/presentation/todo_model.dart';
 
 class TodoDetailsScreen extends StatelessWidget {
   const TodoDetailsScreen({
@@ -13,7 +13,7 @@ class TodoDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<TodoProvider>();
+    final TodoModel todoModel = context.watch<TodoModel>();
 
     return Scaffold(
       appBar: AppBar(
@@ -38,7 +38,7 @@ class TodoDetailsScreen extends StatelessWidget {
                 Checkbox(
                     value: todo.isDone,
                     onChanged: (change) {
-                      provider.toggleTodo(todo);
+                      todoModel.toggleTodo(todo);
                     }),
               ],
             ),

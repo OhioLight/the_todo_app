@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:the_todo_app/done_todos_screen.dart';
-import 'package:the_todo_app/open_todos_screen.dart';
-import 'package:the_todo_app/todo_item.dart';
-import 'package:the_todo_app/todo_provider.dart';
+import 'package:the_todo_app/presentation/done_todos_screen.dart';
+import 'package:the_todo_app/presentation/open_todos_screen.dart';
+import 'package:the_todo_app/presentation/todo_list_item.dart';
+import 'package:the_todo_app/presentation/todo_model.dart';
 
 class TodoMainScreen extends StatelessWidget {
   const TodoMainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Schritt 3: Den Provider verwenden.
-    //final provider = context.watch<TodoProvider>();
-    final provider = Provider.of<TodoProvider>(context, listen: true);
+    // Schritt 3: Das Model verwenden.
+    //final TodoModel todoModel = context.watch<TodoModel>();
+    final TodoModel todoModel = Provider.of<TodoModel>(context, listen: true);
 
     return Scaffold(
       appBar: AppBar(
@@ -32,7 +32,7 @@ class TodoMainScreen extends StatelessWidget {
               children: [
                 const Icon(Icons.pending_actions),
                 Text(
-                  provider.openTodos.length.toString(),
+                  todoModel.openTodos.length.toString(),
                   style: const TextStyle(fontSize: 24),
                 ),
               ],
@@ -48,7 +48,7 @@ class TodoMainScreen extends StatelessWidget {
               children: [
                 const Icon(Icons.done),
                 Text(
-                  provider.doneTodos.length.toString(),
+                  todoModel.doneTodos.length.toString(),
                   style: const TextStyle(fontSize: 24),
                 ),
               ],
@@ -56,16 +56,16 @@ class TodoMainScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: switch (provider.todoProviderStatus) {
-        TodoProviderStatus.error =>
+      body: switch (todoModel.todoProviderStatus) {
+        TodoModelStatus.error =>
           const Center(child: Text("Fehler beim Laden der Todos")),
-        TodoProviderStatus.loaded => ListView.builder(
-            itemCount: provider.todos.length,
+        TodoModelStatus.loaded => ListView.builder(
+            itemCount: todoModel.todos.length,
             itemBuilder: (context, index) {
-              return TodoItem(todo: provider.todos[index]);
+              return TodoListItem(todo: todoModel.todos[index]);
             },
           ),
-        TodoProviderStatus.loading =>
+        TodoModelStatus.loading =>
           const Center(child: CircularProgressIndicator()),
       },
     );
