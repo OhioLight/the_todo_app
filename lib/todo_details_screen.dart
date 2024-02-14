@@ -13,7 +13,7 @@ class TodoDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<TodoProvider>();
+    final todosProvider = context.watch<TodosModel>();
 
     return Scaffold(
       appBar: AppBar(
@@ -38,7 +38,7 @@ class TodoDetailsScreen extends StatelessWidget {
                 Checkbox(
                     value: todo.isDone,
                     onChanged: (change) {
-                      provider.toggleTodo(todo);
+                      todosProvider.toggleTodo(todo);
                     }),
               ],
             ),

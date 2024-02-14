@@ -10,9 +10,9 @@ class TodoMainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Schritt 3: Den Provider verwenden.
-    //final provider = context.watch<TodoProvider>();
-    final provider = Provider.of<TodoProvider>(context, listen: true);
+    // Schritt 3: Das Model verwenden.
+    final todosModel = context.watch<TodosModel>();
+    //final todosModel = Provider.of<TodosModel>(context, listen: true);
 
     return Scaffold(
       appBar: AppBar(
@@ -32,7 +32,7 @@ class TodoMainScreen extends StatelessWidget {
               children: [
                 const Icon(Icons.pending_actions),
                 Text(
-                  provider.openTodos.length.toString(),
+                  todosModel.openTodos.length.toString(),
                   style: const TextStyle(fontSize: 24),
                 ),
               ],
@@ -48,7 +48,7 @@ class TodoMainScreen extends StatelessWidget {
               children: [
                 const Icon(Icons.done),
                 Text(
-                  provider.doneTodos.length.toString(),
+                  todosModel.doneTodos.length.toString(),
                   style: const TextStyle(fontSize: 24),
                 ),
               ],
@@ -57,9 +57,9 @@ class TodoMainScreen extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-        itemCount: provider.todos.length,
+        itemCount: todosModel.todos.length,
         itemBuilder: (context, index) {
-          return TodoItem(todo: provider.todos[index]);
+          return TodoItem(todo: todosModel.todos[index]);
         },
       ),
     );

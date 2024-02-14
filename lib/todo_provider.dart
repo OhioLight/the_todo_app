@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:the_todo_app/todo.dart';
 
-// Schritt 1: Provider erstellen
-class TodoProvider extends ChangeNotifier {
+// Schritt 1: Model erstellen
+class TodosModel extends ChangeNotifier {
   /// Das hier ist der State, der in allen Widgets verwendet werden soll.
   /// Dafür muss er natürlich auch von den Widgets angepasst werden.
   final List<Todo> _todos = [

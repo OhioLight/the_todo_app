@@ -5,14 +5,14 @@ import 'package:the_todo_app/todo_provider.dart';
 
 /// Schritte für SMS mit provider:
 /// - Schritt 0: Package provider einbinden :)
-/// - Schritt 1: Einen Provider erstellen.
-/// - Schritt 2: Den Provider für die App zur Verfügung stellen.
-/// - Schritt 3: Den Provider verwenden (Consumer, context.watch, ...).
+/// - Schritt 1: Ein Model erstellen.
+/// - Schritt 2: Das Model für die App mit einem Provider zur Verfügung stellen.
+/// - Schritt 3: Das Model verwenden (Consumer, context.watch, ...).
 void main() {
   runApp(
-    // Schritt 2: Den Provider für die App zur Verfügung stellen.
+    // Schritt 2: Das Model für die App mit einem Provider zur Verfügung stellen.
     ChangeNotifierProvider(
-      create: (context) => TodoProvider(),
+      create: (context) => TodosModel(),
       child: const MyApp(),
     ),
   );

@@ -25,12 +25,12 @@ class TodoItem extends StatelessWidget {
           ),
         );
       },
-      child: Consumer<TodoProvider>(
-        builder: (context, provider, child) => ListTile(
+      child: Consumer<TodosModel>(
+        builder: (context, todosModel, child) => ListTile(
           leading: Checkbox(
             value: todo.isDone,
             onChanged: (bool? value) {
-              provider.toggleTodo(todo);
+              todosModel.toggleTodo(todo);
             },
           ),
           title: Text(todo.topic),

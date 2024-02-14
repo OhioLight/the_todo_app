@@ -8,8 +8,8 @@ class OpenTodosScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final provider = context.watch<TodoProvider>();
-    final provider = Provider.of<TodoProvider>(context, listen: true);
+    //final todosModel = context.watch<TodosModel>();
+    final todosModel = Provider.of<TodosModel>(context, listen: true);
 
     return Scaffold(
       appBar: AppBar(
@@ -20,9 +20,9 @@ class OpenTodosScreen extends StatelessWidget {
         backgroundColor: Colors.lightBlue[500],
       ),
       body: ListView.builder(
-        itemCount: provider.openTodos.length,
+        itemCount: todosModel.openTodos.length,
         itemBuilder: (context, index) {
-          return TodoItem(todo: provider.openTodos[index]);
+          return TodoItem(todo: todosModel.openTodos[index]);
         },
       ),
     );
