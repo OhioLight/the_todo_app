@@ -48,6 +48,7 @@ class TodoModel extends ChangeNotifier {
 
   /// Gibt eine Liste von Todos zurück, die offen sind.
   List<Todo> get openTodos => _todos.where((todo) => !todo.isDone).toList();
+
   // List<Todo> get openTodos {
   //   final openTodos = <Todo>[];
   //   for (final todo in todos) {
@@ -60,6 +61,7 @@ class TodoModel extends ChangeNotifier {
 
   /// Gibt eine Liste von Todos zurück, die erledigt wurden.
   List<Todo> get doneTodos => _todos.where((todo) => todo.isDone).toList();
+
   // List<Todo> get doneTodos {
   //   final doneTodos = <Todo>[];
   //   for (final todo in todos) {
