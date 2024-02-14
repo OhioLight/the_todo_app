@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:the_todo_app/done_todos_screen.dart';
-import 'package:the_todo_app/open_todos_screen.dart';
-import 'package:the_todo_app/todo_item.dart';
-import 'package:the_todo_app/todo_provider.dart';
+import 'package:the_todo_app/presentation/done_todos_screen.dart';
+import 'package:the_todo_app/presentation/open_todos_screen.dart';
+import 'package:the_todo_app/presentation/todo_list_item.dart';
+import 'package:the_todo_app/presentation/todo_model.dart';
 
 class TodoMainScreen extends StatelessWidget {
   const TodoMainScreen({super.key});
@@ -11,7 +11,7 @@ class TodoMainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Schritt 3: Das Model verwenden.
-    final todosModel = context.watch<TodosModel>();
+    final todosModel = context.watch<TodoModel>();
     //final todosModel = Provider.of<TodosModel>(context, listen: true);
 
     return Scaffold(
@@ -59,7 +59,7 @@ class TodoMainScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: todosModel.todos.length,
         itemBuilder: (context, index) {
-          return TodoItem(todo: todosModel.todos[index]);
+          return TodoListItem(todo: todosModel.todos[index]);
         },
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:the_todo_app/todo_item.dart';
-import 'package:the_todo_app/todo_provider.dart';
+import 'package:the_todo_app/presentation/todo_list_item.dart';
+import 'package:the_todo_app/presentation/todo_model.dart';
 
 class OpenTodosScreen extends StatelessWidget {
   const OpenTodosScreen({super.key});
@@ -9,7 +9,7 @@ class OpenTodosScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final todosModel = context.watch<TodosModel>();
-    final todosModel = Provider.of<TodosModel>(context, listen: true);
+    final todosModel = Provider.of<TodoModel>(context, listen: true);
 
     return Scaffold(
       appBar: AppBar(
@@ -22,7 +22,7 @@ class OpenTodosScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: todosModel.openTodos.length,
         itemBuilder: (context, index) {
-          return TodoItem(todo: todosModel.openTodos[index]);
+          return TodoListItem(todo: todosModel.openTodos[index]);
         },
       ),
     );
