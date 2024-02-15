@@ -23,6 +23,12 @@ class TodoListItem extends StatelessWidget {
           },
         ),
         title: Text(todo.topic),
+        trailing: IconButton(
+          icon: const Icon(Icons.delete),
+          onPressed: () {
+            model.deleteTodo(todo);
+          },
+        ),
         onTap: () {
           Navigator.push(
             context,

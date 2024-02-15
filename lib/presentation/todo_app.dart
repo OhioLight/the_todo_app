@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:the_todo_app/presentation/todo_main_screen.dart';
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class TodoApp extends StatefulWidget {
+  const TodoApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<TodoApp> createState() => _TodoAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _TodoAppState extends State<TodoApp> {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(

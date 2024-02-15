@@ -17,25 +17,15 @@ class TodoModel extends ChangeNotifier {
   /// Merkt sich die Todos für die UI. Muss mit Firestore synchronisiert werden.
   final List<Todo> _todos = [];
 
-  // /// Das hier ist der State, der in allen Widgets verwendet werden soll.
-  // /// Dafür muss er natürlich auch von den Widgets angepasst werden.
-  // final List<Todo> _todos = [
-  //   Todo(id: 0, topic: "Frühstücken", isDone: true),
-  //   Todo(id: 1, topic: "Clojure lernen"),
-  //   Todo(id: 2, topic: "Vorlesung vorbereiten", isDone: true),
-  //   Todo(id: 3, topic: "Tasksheet vorbereiten", isDone: true),
-  //   Todo(id: 4, topic: "Lego bauen"),
-  // ];
-
   TodoModel() {
     //_loadTodos();
-    _loadTodosStream();
+    _loadTodos();
   }
 
   TodoModelStatus get todoProviderStatus => _todoModelStatus;
   List<Todo> get todos => _todos;
 
-  Future<void> _loadTodosStream() async {
+  Future<void> _loadTodos() async {
     try {
       _todoRepository.todos.listen((todos) {
         _todos.clear();
@@ -83,5 +73,13 @@ class TodoModel extends ChangeNotifier {
     todoToChange.isDone = !(todoToChange.isDone);
     _todoRepository.setTodoCompletion(todoToChange, todoToChange.isDone);
     notifyListeners();
+  }
+
+  void resetTodos() {
+    _todoRepository.resetTodos();
+  }
+
+  void deleteTodo(Todo todo) {
+    _todoRepository.deleteTodo(todo);
   }
 }

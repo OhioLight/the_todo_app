@@ -24,6 +24,12 @@ class TodoMainScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () {
+              todoModel.resetTodos();
+            },
+            child: const Icon(Icons.replay_circle_filled_sharp),
+          ),
+          TextButton(
+            onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => const OpenTodosScreen(),
               ));
