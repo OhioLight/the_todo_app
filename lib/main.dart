@@ -21,7 +21,7 @@ Future<void> main() async {
     // Schritt 2: Das Model für die App zur Verfügung stellen.
     ChangeNotifierProvider(
       create: (context) => TodoModel(),
-      child: const MyApp(),
+      child: const TodoApp(),
     ),
   );
 }
