@@ -18,7 +18,6 @@ class TodoModel extends ChangeNotifier {
   final List<Todo> _todos = [];
 
   TodoModel() {
-    //_loadTodos();
     _loadTodos();
   }
 
