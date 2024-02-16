@@ -4,8 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:the_todo_app/presentation/todo_app.dart';
 import 'package:the_todo_app/presentation/todo_model.dart';
 
-import 'firebase_options.dart';
-
 /// Schritte für SMS mit provider:
 /// - Schritt 0: Package provider einbinden :)
 /// - Schritt 1: Ein Model erstellen.
